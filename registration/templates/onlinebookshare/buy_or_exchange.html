@@ -1,0 +1,55 @@
+{% extends 'onlinebookshare/base.html' %}
+{% block  body %}
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  <link rel="icon" type="image/png" href="…">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+{% load staticfiles %}
+   <link rel="stylesheet" type="text/css" href="{% static 'onlinebookshare/buy_or_exchange.css'%}"/>
+    <script src="{% static 'onlinebookshare/buy_or_exchange.js' %}"></script>
+
+
+
+<form method="post" action="/search/" autocomplete="off">
+    <fieldset class="url">
+      {% csrf_token %}
+      <input id="url" type="text" name="q" required>
+      <label for="url"><i class="fa fa-search" aria-hidden="true"></i> Search</label>
+      <div class="after"></div>
+    </fieldset>
+    <fieldset class="enter">
+      <button></button>
+    </fieldset>
+  </form>
+
+
+    {% if object_list %}
+{% for obj in object_list %}
+    <div class="wrapper">
+        <div class="product-img">
+
+            <img src='{{ obj.book_image.url}}'>
+
+        </div>
+        <div class="product-info">
+            <div class="product-text">
+                <h1>{{ obj.book_name }}</h1>
+                <h2>by {{ obj.author_name }}</h2>
+            </div>
+            <div class="product-details-btn">
+                <a href="{% url 'onlinebookshare:buybookdetails' obj.id %}">
+                    <button class="what" type="button"></button>
+                </a>
+            </div>
+        </div>
+      </div>
+
+
+
+
+
+{% endfor %}
+    {% endif %}
+{% endblock %}

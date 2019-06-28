@@ -1,0 +1,160 @@
+body{
+    background: url("images/pic1.jpg") no-repeat center center fixed;
+      -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
+}
+
+
+.flip-container {
+	perspective: 1000px;
+    padding-top: 30px;
+
+}
+	/* flip the pane when hovered */
+	.flip-container:hover .flipper, .flip-container.hover .flipper {
+		transform: rotateY(180deg);
+	}
+
+.flip-container, .front, .back {
+	width: 320px;
+	height: 480px;
+
+
+}
+
+/* flip speed goes here */
+.flipper {
+	transition: 0.6s;
+	transform-style: preserve-3d;
+	position: relative;
+    text-align: center;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* hide back of pane during swap */
+.front, .back {
+	backface-visibility: hidden;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+/* front pane, placed above back */
+.front {
+	z-index: 2;
+	/* for firefox 31 */
+	transform: rotateY(0deg);
+}
+
+/* back, initially hidden pane */
+.back {
+	transform: rotateY(180deg);
+}
+
+
+
+
+
+i {
+	display: block;
+	margin: auto;
+	margin-top: 50px;
+	text-decoration: none;
+	color: inherit;
+}
+
+@keyframes linear {
+
+	from {
+		background-position: 0 0;
+	}
+	to {
+		background-position: 200px 0;
+	}
+
+}
+
+@keyframes radial {
+
+	from {
+		background-position: 0 0;
+	}
+	to {
+		background-position: 0 60px;
+	}
+
+}
+
+@keyframes repeating {
+
+	from {
+		background-position: 0 0;
+	}
+	to {
+		background-position: 0 85px;
+	}
+
+}
+
+@keyframes electronic {
+
+	0%, 100% {
+		background-position: 20px -30px;
+	}
+	25% {
+		background-position: 150px 5px;
+	}
+	50% {
+		background-position: 20px 40px;
+	}
+	75% {
+		background-position: -100px 5px;
+	}
+
+}
+
+.biliboard {
+	width: 200px;
+	padding: 20px;
+	text-align: center;
+	position: relative;
+	background: #fff;
+	color: #333;
+	font: 13px open, tahoma;
+}
+.biliboard:before {
+	content: '';
+	display: block;
+	height: 100%;
+	width: 100%;
+	border-radius: 3px;
+	transform: scale( 1.02, 1.08 );
+	position: absolute;
+	background: #f00;
+	background: linear-gradient( 90deg, #fafafa, #fafafa, #1D8EF7, #fafafa, #fafafa );
+	background-position: 55px 0;
+	top: 0;
+	animation: linear 1s infinite linear;
+	left: 0;
+	z-index: -1;
+}
+
+.biliboard.radial:before {
+	background: radial-gradient( #fafafa, #fafafa, #F2A61A, #fafafa, #fafafa );
+	animation: radial 1s infinite linear;
+}
+
+.biliboard.repeating:before {
+	background: repeating-linear-gradient( -45deg, #fafafa, #fafafa 30px, #5FC914 30px, #5FC914 60px ) fixed;
+	animation: repeating 1s infinite linear;
+}
+
+.biliboard.electronic:before {
+	background: radial-gradient( #EA238D, #EA238D, #EA238D, #EA238D, #fafafa, #fafafa ) no-repeat;
+	background-size: 150px 50px;
+	animation: electronic 2s infinite linear;
+}

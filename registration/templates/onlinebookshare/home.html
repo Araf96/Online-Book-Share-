@@ -1,0 +1,122 @@
+{% load staticfiles %}
+
+<html>
+
+<head>
+    <title>Chat Panel</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'onlinebookshare/chat.css' %}">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <div id="chat-body" class="panel panel-default">
+        <div class="panel-heading">Chat Box</div>
+        <div id="msg-list-div" class="panel-body">
+            <ul id="msg-list" class="list-group">
+                {% for obj in chat %}
+                    {% if obj.user == request.user %}
+                        <li class="text-right list-group-item">{{ obj.message }}</li>
+                    {% else %}
+                        <li class="text-left list-group-item">{{ obj.message }}</li>
+                    {% endif %}
+                {% empty %}
+                    <li class="text-right list-group-item">No messages yet!</li>
+                {% endfor %}
+                <script>
+                    var chatlist = document.getElementById('msg-list-div');
+                    chatlist.scrollTop = chatlist.scrollHeight;
+                </script>
+            </ul>
+        </div>
+    </div>
+
+    <form id="chat-form" method="post" action="/post/">
+        <div id="chat-bottom" class="input-group">
+            <input type="text" id="chat-msg" name="chat-msg" class="form-control"/>
+            <span class="input-group-btn">
+                <input class="btn btn-default" id="send" type="submit" value="Send"/>
+            </span>
+        </div>
+    </form>
+</body>
+
+<script src="{% static 'chat.js' %}"></script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container">
+
+		<div class="bg-image">
+			<h3>Mostafa Hassani</h3>
+		</div>
+
+
+<div class="all">
+		<div class="chat">
+			<div class="show-message">
+
+                 {% for obj in chat %}
+                    {% if obj.user == request.user %}
+                    <div class="me">
+                        <img src="http://i.cubeupload.com/c6AJ19.png" width=32 height=32 />
+                        <div class="message">
+                            <p>{{ obj.message }}
+                            </p>
+                        </div>
+                    </div>
+                    {% else %}
+                       <div class="friend">
+                            <img src="http://i.cubeupload.com/nD0XUv.png" width=32 height=32 />
+                            <div class="message">
+                                <p>{{ obj.message }}</p>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% empty %}
+                    <li class="text-right list-group-item">No messages yet!</li>
+                {% endfor %}
+                <script>
+                    var chatlist = document.getElementById('msg-list-div');
+                    chatlist.scrollTop = chatlist.scrollHeight;
+                </script>
+
+				<div class="badboy"></div>
+			</div>
+            <form id="chat-form" method="post" action="/post/">
+                <div class="type-text">
+                    <input type="text" placeholder='Write here' />
+                    <button type='submit'><i id='i' class='icon-comments-alt'>send</i></button>
+                </div>
+            </form>
+		</div>
+
+		<div class="Link">
+			<div class="menu">
+				<ul>
+					<li><a href="">codepen.io/Hassani</a></li>
+					<li><a href="">github.com/yegane</a></li>
+					<li><a href="">seyedmostafahassani@gmail.com</a></li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="badboy"></div>
+	</div>
+</div>

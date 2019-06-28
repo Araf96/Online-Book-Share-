@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}OnlineBookShare{% endblock %}</title>
+
+    {% load staticfiles %}
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="{% static 'onlinebookshare/navbar_new.css'%}"/>
+    <script src="{% static 'onlinebookshare/base.js' %}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+</head>
+<body>
+<style>
+{#.badge1 {#}
+{#   position:relative;#}
+{#.badge1[data-badge]:after {#}
+{#   content:attr(data-badge);#}
+{#   position:absolute;#}
+{#   top:-10px;#}
+{#   right:-10px;#}
+{#   font-size:.7em;#}
+{#   background:green;#}
+{#   color:white;#}
+{#   width:18px;height:18px;#}
+{#   text-align:center;#}
+{#   line-height:18px;#}
+{#   border-radius:50%;#}
+{#   box-shadow:0 0 1px #333;#}
+{#}#}
+</style>
+<nav>
+	<a href="{% url 'onlinebookshare:homepage' %}"> Home</a>
+	<a href="{% url 'onlinebookshare:account' %}"> About</a>
+	<a href="{% url 'onlinebookshare:library' %}"> MyLibrary</a>
+	<a href="{% url 'onlinebookshare:buy_exchange' %}"> Buy/Exchange</a>
+	<a href="{% url 'onlinebookshare:home' %}"> Message</a>
+    <a class="badge1" data-badge="0" href="#"> Notification</a>
+    <a href="{% url 'onlinebookshare:logout' %}"> Logout</a>
+
+	<div class="animation start-home"></div>
+</nav>
+
+
+{% block body %}
+{% endblock %}
+</body>
+</html>

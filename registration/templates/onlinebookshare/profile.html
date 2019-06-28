@@ -1,0 +1,70 @@
+{% extends 'onlinebookshare/base.html' %}
+
+{% block body %}
+
+{% load staticfiles %}
+ <link rel="stylesheet" type="text/css" href="{% static 'onlinebookshare/profile.css'%}"/>
+ <script src="{% static 'onlinebookshare/profile.js' %}"></script>
+
+
+
+<form method="post" enctype="multipart/form-data">{% csrf_token %}
+<div id="container">
+
+  <span class="input">
+    <input type="text" class="input__field" name="first_name" id="input-1" />
+    <label for="input-1" class="input__label">
+      <span class="input__label-content">First Name</span>
+  </label>
+  </span>
+
+  <span class="input">
+    <input type="text" class="input__field" name="last_name" id="input-2"  />
+    <label for="input-2" class="input__label">
+      <span class="input__label-content">Last Name</span>
+    </label>
+  </span>
+
+  <span class="input">
+    <input type="text" class="input__field" name="phone" id="input-3" />
+    <label for="input-3" class="input__label">
+      <span class="input__label-content">Phone Number</span>
+    </label>
+  </span>
+
+  <span class="input">
+    <input type="text" class="input__field" name="country" id="input-4" />
+    <label for="input-4" class="input__label">
+      <span class="input__label-content">Country</span>
+    </label>
+  </span>
+
+  <span class="input">
+    <input class="input__field" name="job" id="input-5"></input>
+    <label for="input-5" class="input__label">
+      <span class="input__label-content">Job</span>
+    </label>
+  </span>
+
+
+   <span class="input">
+    <input class="input__field" name="organization" id="input-6"></input>
+    <label for="input-6" class="input__label">
+      <span class="input__label-content">Organization</span>
+    </label>
+  </span>
+
+  <label for="input-7" class="my__input__label">
+      <span class="my__input__label-content">Profile Picture</span>
+  </label>
+  <span class="input_my">
+    <input type="file" class="input__field" name="pro_pic" id="input-7" accept="image/*"></input>
+
+  </span>
+
+  <button id="send-button" type="submit">Submit</button>
+
+</div>
+</form>
+
+{% endblock %}

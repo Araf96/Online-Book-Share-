@@ -1,0 +1,55 @@
+{% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'onlinebookshare/style1.css'%}"/>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+<head>
+    <title>Register</title>
+</head>
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <span class="glyzphicon glyphicon-new-window"></span> Create a New Account</div>
+
+                <div class="panel-body">
+                    {% if error_message %}
+                        <p><strong>{{ error_message }}</strong></p>
+                    {% endif %}
+                    <form class="form-horizontal" role="form" action="" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {% for field in form %}
+
+                        <div class="form-group">
+                            <div class="col-sm-offset-3 col-sm-9">
+                                <span class="text-danger small">{{ field.errors }}</span>
+                            </div>
+                            <label  class="col-sm-3 control-label">
+                                {{ field.label_tag }}</label>
+                            <div class="col-sm-9">{{ field }}
+                            </div>
+                        </div>
+
+                    {% endfor %}
+
+
+                    <div class="form-group last">
+                        <div class="col-sm-offset-3 col-sm-8">
+                            <button type="submit" class="btn btn-success btn-sm">
+                                Create New Account</button>
+                        </div>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

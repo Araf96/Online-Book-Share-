@@ -1,0 +1,40 @@
+{% extends 'onlinebookshare/base.html' %}
+
+{% block body %}
+{% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'onlinebookshare/addbook.css'%}"/>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-0">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <span class="glyphicon glyphicon-book "></span> Add Book Informations</div>
+                <div class="panel-body">
+                    <form class="form-horizontal" role="form" action="" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {% for field in book_form %}
+                        <div class="form-group">
+                            <label  class="col-sm-3 control-label">
+                                {{ field.label_tag }}</label>
+                            <div class="col-sm-6">{{ field }}
+                            </div>
+                        </div>
+                    {% endfor %}
+
+
+                    <div class="form-group last">
+                        <div class="col-sm-offset-3 col-sm-8">
+                            <button type="submit" class="btn btn-success btn-sm">
+                                Submit</button>
+                        </div>
+                    </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

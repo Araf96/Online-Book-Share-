@@ -1,0 +1,74 @@
+{% extends 'onlinebookshare/base.html' %}
+
+{% block body %}
+
+
+
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'onlinebookshare/details_page.css'%}"/>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+ <center>
+
+
+<div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+
+	<div class="flipper">
+		<div class="front" style="background: url({{ book_info.book_image.url }}) 0 0 no-repeat;min-height: 100%;min-width: 100%;background-size: 100% 100%;">
+		</div>
+		<div class="back" style="background: #f8f8f8">
+			<div class="back-logo">{{ book_info.book_name }}</div>
+            <div class="back-title">{{ book_info.author_name }}</div>
+            <div class="back-title">{{ book_info.category }}</div>
+            <div class="back-title">{{ book_info.publishing_year }}</div>
+            <div class="owner">{{ book_info.user.username }}</div>
+            <i class="biliboard">Click NOW!</i>
+            <form id="comm_form">
+                {% csrf_token %}
+                <input id="slug" type="hidden" name="id" value="{{ book_info.id }}">
+
+                <button class="btn btn-primary" type="submit" id="senderr">COME ON!!!</button>
+            </form>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+
+
+    $(document).on('submit','#comm_form',function(e){
+    e.preventDefault();
+    $.ajax({
+      type : 'POST',
+      url  : "{% url 'onlinebookshare:createnotification' %}",
+      data :  {
+          slug : $('#slug').val(),
+          csrfmiddlewaretoken : $('input[name=csrfmiddlewaretoken]').val()
+      },
+      success:function(data){
+
+
+
+      }
+    })
+});
+    </script>
+ <script>
+      function getNotifications(){
+                      $.get("{% url 'onlinebookshare:notificatgionread'  %}", {}, function(result_list) {
+                            jsonData = JSON.parse(result_list);
+{#                            alert(jsonData.length);#}
+                            var c;
+                            for (var i = 0; i < jsonData.length; i++) {
+                                  c = jsonData[i];
+                            }
+                            var k = document.getElementById('bal');
+                            k.val = jsonData.length;
+                      });
+                      }
+     window.onload = function() {
+                      var myVar = setInterval(getNotifications, 1000);
+                  };
+
+ </script>
+ </center>
+    <p id="bal" class="nn">zfvaxv</p>
+{% endblock %}

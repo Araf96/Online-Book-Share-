@@ -1,0 +1,90 @@
+{% extends 'onlinebookshare/base.html' %}
+
+
+{% block body %}
+{% load staticfiles %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="{% static 'onlinebookshare/new_homepahe.css'%}"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+<div class="container">
+    <div class="row profile">
+		<div class="col-md-3">
+			<div class="profile-sidebar">
+
+				<div class="square">
+                    {% if person.pro_pic %}
+					<img src="{{ person.pro_pic.url }}" class="img-responsive" alt="">
+                    {% endif %}
+				</div>
+
+                <center>
+                <div class="Sparkle">
+                    {{ request.user.username }}
+                </div>
+
+				<div class="profile-userbuttons">
+					<button type="button" class="btn btn-success btn-sm">Follow</button>
+					<button type="button" class="btn btn-danger btn-sm">Message</button>
+				</div>
+
+				<div class="profile-usermenu">
+					<ul class="nav">
+						<li class="active">
+							<a href="{% url 'onlinebookshare:overview' %}">
+							<i class="glyphicon glyphicon-home"></i>
+							Overview </a>
+						</li>
+						<li>
+							<a href="#">
+							<i class="glyphicon glyphicon-user"></i>
+							Account Settings </a>
+						</li>
+						<li>
+							<a href="#" target="_blank">
+							<i class="glyphicon glyphicon-ok"></i>
+							Tasks </a>
+						</li>
+						<li>
+							<a href="{% url 'onlinebookshare:help' %}">
+							<i class="glyphicon glyphicon-flag"></i>
+							Help </a>
+						</li>
+					</ul>
+				</div>
+				<!-- END MENU -->
+                    </center>
+			</div>
+		</div>
+        {% for obj in recent_books %}
+              <div class="wrapper">
+                <div class="product-img">
+
+                    <img src='{{ obj.book_image.url}}'>
+
+                </div>
+                <div class="product-info">
+                    <div class="product-text">
+                        <h1>{{ obj.book_name }}</h1>
+                        <h2>by {{ obj.author_name }}</h2>
+                    </div>
+                    <div class="product-price-btn">
+                        <a href="{% url 'onlinebookshare:bookdetails' obj.id %}">
+                            <button type="button">Details</button>
+                        </a>
+                    </div>
+                </div>
+              </div>
+
+        {% endfor %}
+
+
+
+
+		</div>
+	</div>
+
+{% endblock %}
